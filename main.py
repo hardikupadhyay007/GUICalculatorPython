@@ -14,6 +14,7 @@ class Calculator:
         self.num1 = None
         self.num2 = None
         self.operator = None
+        self.intTyped = False
         
         frame = Frame(master)
         frame.grid()
@@ -73,6 +74,10 @@ class Calculator:
         self.var.set(z)
         if self.num1 is None:
             self.num1 = self.intNum
+        #This allows the user to type in a new equation not using result as self.num1
+        elif self.intTyped == True:
+            self.num1 = self.intNum
+            print(self.num1)
         self.intNum = 0
 
     def enter(self):
@@ -81,10 +86,16 @@ class Calculator:
         
         if self.num2 is None:
             self.num2 = self.intNum
+            self.intNum = 0
             
         if self.operator is None:
             raise ValueError ("An operator is needed")
         elif self.operator is not None:
+            
+            print(self.num1)
+            print(self.num2)
+            print(self.intTyped)
+            
             result = 0
             if self.operator == Operators.plus:
                 result = self.num1 + self.num2
@@ -99,9 +110,11 @@ class Calculator:
             #This following code allows the user to reuse the answer for further calculations
             self.num1 = result
             self.num2 = None
+            self.intTyped = False
             self.var.set(result)
 
     def appendNum(self, x):
+        self.intTyped = True
         #Adds numbers first as a string and then converts answer to int
         #Allows user to input e.g 1;2;0;9 which forms to 1209
         self.intNum = int(str(self.intNum) + str(x))
