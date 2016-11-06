@@ -77,7 +77,6 @@ class Calculator:
         #This allows the user to type in a new equation not using result as self.num1
         elif self.intTyped == True:
             self.num1 = self.intNum
-            print(self.num1)
         self.intNum = 0
 
     def enter(self):
@@ -91,11 +90,6 @@ class Calculator:
         if self.operator is None:
             raise ValueError ("An operator is needed")
         elif self.operator is not None:
-            
-            print(self.num1)
-            print(self.num2)
-            print(self.intTyped)
-            
             result = 0
             if self.operator == Operators.plus:
                 result = self.num1 + self.num2
